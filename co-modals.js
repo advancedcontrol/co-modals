@@ -45,7 +45,7 @@
                     '<div>' +
                         '<div>' +
                             '<div class="modal-header"><h1>{{title}}</h1>' +
-                                '<span class="close" ng-click="close"></span>' +
+                                '<span ng-if="showClose" class="close" ng-click="close"></span>' +
                             '</div>' +
                             '<div class="modal-content" ng-transclude></div>' +
                         '</div>' +
@@ -53,9 +53,8 @@
                 controller: function() {},
                 link: function(scope, element, attrs, ctrl) {
                     var name = scope.name;
-
-                    // Detach the element from the DOM
-                    element.detach();
+                        
+                    scope.showClose = !attrs.hasOwnProperty('noClose');
 
                     // Add the controller to the popup registry
                     modals[name] = ctrl;
@@ -73,9 +72,21 @@
                         });
                     };
 
+                    // Detach the element from the DOM
+                    if (scope.showClose) {
+                        element.on('touch click', function () {
+                            scope.$apply(ctrl.close);
+                        });
+                        element.children().children().on('touch click', function (e) {
+                            e.stopPropagation();
+                        });
+                    }
+                    element.detach();
+
                     // On destroy, unregister the popup
                     scope.$on('$destroy', function () {
                         ctrl.close()['finally'](function () {
+                            element.remove();
                             element = null;
                         });
                         ctrl.close = angular.noop;
