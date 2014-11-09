@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Angular Modal Demo</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body ng-app="coUtils">
+
+        <div ng-init="scopeVar = 23" ng-controller="Modals">
+            <h1>Click to show</h1>
+            <button ng-click="showModal('hello')">a popup</button>
+
+            <modal name="hello" title="Testing Modal">
+                <p>Testing that we are still in scope {{scopeVar}}</p>
+                <button ng-click="closeModal('hello')">Close</button>
+            </modal>
+        </div>
+
+        <script src="../bower_components/angular/angular.js"></script>
+        <script src="../co-modals.js"></script>
+    </body>
+</html>

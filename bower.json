@@ -1,0 +1,9 @@
+{
+  "name": "co-modals",
+  "main": ["co-modals.js"],
+  "description": "Simple AngularJS modal directive for popups",
+  "dependencies": {
+    "angular": "1.x"
+  },
+  "devDependencies": {}
+}

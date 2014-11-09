@@ -1,0 +1,102 @@
+@import "compass";
+
+@mixin co-modals(
+    $body-background:   white,
+    $body-color:        black,
+
+    $title-background:  #292d33,
+    $title-color:       white,
+
+    $actions-background:#292d33,
+    $actions-color:     white,
+
+    $mobile-breakpoint: 768px,
+    $mobile-width:      300px,
+    $desktop-width:     500px,
+
+    $border-radius:     4px
+) {
+
+    div#modals > modal {
+        background-color: rgba(0, 0, 0, 0.4);
+
+        display: table;
+        width: 100%;
+        height: 100%;
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        padding: 0px;
+        margin: 0px;
+        border: 0px;
+
+        &> div {
+            display: table-cell;
+            vertical-align: middle;
+
+            &> div {
+                margin: 0 auto;
+            }
+        }
+    }
+
+        
+    @media only screen and (max-width: $mobile-breakpoint) {
+        modal > div > div {
+            width: $mobile-width !important;
+        }
+    }
+
+    modal > div > div {
+        background-color: white;
+        padding-bottom: 20px;
+        width: $desktop-width;
+        border-radius: $border-radius;
+
+        h1 {
+            background-color: $title-background;
+            color: $title-color;
+
+            line-height: 20px;
+            font-weight: normal;
+            text-align: left;
+            font-size: 16px;
+
+            padding: 10px 20px;
+            border-top-left-radius: $border-radius;
+            border-top-right-radius: $border-radius;
+
+            margin-bottom: 30px;
+        }
+
+        p {
+            padding: 0px 20px;
+
+            text-align: left;
+            font-size: 14px;
+            line-height: 18px;
+
+            margin-bottom: 30px;
+        }
+
+        menu {
+            padding: 0px 30px;
+
+            a {
+                &.cancel {
+                    float: left;
+                }
+
+                &.ok {
+                    float: right;
+                }
+            }
+
+        }
+    }
+
+}

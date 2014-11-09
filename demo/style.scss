@@ -1,0 +1,12 @@
+
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+@import "../co-modals.scss";
+@include co-modals();
+
+

@@ -1,0 +1,78 @@
+/* line 3, style.scss */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* line 20, ../co-modals.scss */
+div#modals > modal {
+  background-color: rgba(0, 0, 0, 0.4);
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+/* line 37, ../co-modals.scss */
+div#modals > modal > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+/* line 41, ../co-modals.scss */
+div#modals > modal > div > div {
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  /* line 49, ../co-modals.scss */
+  modal > div > div {
+    width: 300px !important;
+  }
+}
+/* line 54, ../co-modals.scss */
+modal > div > div {
+  background-color: white;
+  padding-bottom: 20px;
+  width: 500px;
+  border-radius: 4px;
+}
+/* line 60, ../co-modals.scss */
+modal > div > div h1 {
+  background-color: #292d33;
+  color: white;
+  line-height: 20px;
+  font-weight: normal;
+  text-align: left;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin-bottom: 30px;
+}
+/* line 76, ../co-modals.scss */
+modal > div > div p {
+  padding: 0px 20px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 30px;
+}
+/* line 86, ../co-modals.scss */
+modal > div > div menu {
+  padding: 0px 30px;
+}
+/* line 90, ../co-modals.scss */
+modal > div > div menu a.cancel {
+  float: left;
+}
+/* line 94, ../co-modals.scss */
+modal > div > div menu a.ok {
+  float: right;
+}
