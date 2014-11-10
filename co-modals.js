@@ -36,8 +36,7 @@
             return {
                 scope: {
                     name: '@',
-                    title: '@',
-                    animation: '=?'
+                    title: '@'
                 },
                 restrict: 'E',
                 transclude: true,
@@ -58,24 +57,26 @@
 
                     // Add the controller to the popup registry
                     modals[name] = ctrl;
-                    scope.animation = scope.animation || 'co-modal';
+                    element.addClass(attrs.animation || 'bounceInRight');
 
                     // Provide the controller show and close functions
                     ctrl.show = function () {
                         container.append(element);
-                        return $animate.addClass(element, scope.animation);
+                        return $animate.addClass(element, 'coModal');
                     };
 
                     ctrl.close = function () {
-                        return $animate.removeClass(element, scope.animation).then(function () {
+                        return $animate.removeClass(element, 'coModal').then(function () {
                             element.detach();
                         });
                     };
 
                     // Detach the element from the DOM
                     if (scope.showClose) {
-                        element.on('touch click', function () {
+                        element.on('touch click', function (e) {
                             scope.$apply(ctrl.close);
+                            e.stopPropagation();
+                            e.preventDefault();
                         });
                         element.children().children().on('touch click', function (e) {
                             e.stopPropagation();

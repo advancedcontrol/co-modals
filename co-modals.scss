@@ -14,13 +14,77 @@
     $mobile-width:      300px,
     $desktop-width:     500px,
 
-    $border-radius:     4px
+    $border-radius:     4px,
+    $animation-speed:   0.4s
 ) {
 
     div#modals > modal {
-        background-color: rgba(0, 0, 0, 0.4);
 
-        display: table;
+        // The animations
+        // The background always fades in - the user defines other animations
+        display: none;
+        background-color: transparent;
+        transition: background-color $animation-speed;
+        -webkit-transition: background-color $animation-speed;
+
+        // Initial content styles
+        &> div > div {
+            display: none;
+        }
+        
+        // Start of the animation
+        &.coModal-add {
+            display: table;
+        }
+
+        // The final style
+        &.coModal {
+            display: table;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        // Prepare for remove
+        &.coModal-remove {
+            display: table;
+
+            &> div > div {
+                display: block;
+            }
+        }
+
+        // Hide animations
+        &.coModal-remove-active {
+            background-color: transparent;
+        }
+
+
+        // Isolate the animation on the box
+        &.bounceInRight {
+            &.coModal > div > div {
+                display: block;
+
+                -webkit-animation-name: bounceInRight;
+                animation-name: bounceInRight;
+
+                -webkit-animation-duration: $animation-speed;
+                animation-duration: $animation-speed;
+
+                -webkit-animation-iteration-count: 1;
+                animation-iteration-count: 1;
+            }
+
+            &.coModal-remove > div > div {
+                -webkit-animation-name: bounceOutRight;
+                animation-name: bounceOutRight;
+
+                -webkit-animation-duration: $animation-speed;
+                animation-duration: $animation-speed;
+
+                -webkit-animation-iteration-count: 1;
+                animation-iteration-count: 1;
+            }
+        }
+
         width: 100%;
         height: 100%;
 
@@ -34,6 +98,7 @@
         margin: 0px;
         border: 0px;
 
+        // Center the content on the page
         &> div {
             display: table-cell;
             vertical-align: middle;
@@ -52,10 +117,12 @@
     }
 
     modal > div > div {
-        background-color: white;
+        background-color: $body-background;
         padding-bottom: 20px;
         width: $desktop-width;
         border-radius: $border-radius;
+
+        color: $body-color;
 
         h1 {
             background-color: $title-background;
@@ -86,7 +153,7 @@
         menu {
             padding: 0px 30px;
 
-            a {
+            a, button {
                 &.cancel {
                     float: left;
                 }
@@ -95,7 +162,6 @@
                     float: right;
                 }
             }
-
         }
     }
 
