@@ -15,7 +15,9 @@
     $desktop-width:     500px,
 
     $border-radius:     4px,
-    $animation-speed:   0.4s
+    $animation-speed:   0.4s,
+
+    $z-index: 1000
 ) {
 
     div#modals > modal {
@@ -93,6 +95,8 @@
         left: 0;
         right: 0;
         bottom: 0;
+
+        z-index: $z-index;
 
         padding: 0px;
         margin: 0px;
