@@ -41,10 +41,10 @@
                 restrict: 'E',
                 transclude: true,
                 template:
-                    '<div>' +
-                        '<div>' +
+                    '<div ng-touch="close($event)">' +
+                        '<div ng-touch="$event.stopPropagation()">' +
                             '<div class="modal-header"><h1>{{title}}</h1>' +
-                                '<span ng-if="showClose" class="close" ng-touch="close()"></span>' +
+                                '<span ng-if="showClose" class="close" ng-touch="close($event)"></span>' +
                             '</div>' +
                             '<div class="modal-content" ng-transclude></div>' +
                         '</div>' +
@@ -65,23 +65,21 @@
                         return $animate.addClass(element, 'coModal');
                     };
 
-                    scope.close = ctrl.close = function () {
+                    ctrl.close = function () {
                         return $animate.removeClass(element, 'coModal').then(function () {
                             element.detach();
                         });
                     };
-
-                    // Detach the element from the DOM
-                    if (scope.showClose) {
-                        element.on('touch click', function (e) {
-                            scope.$apply(ctrl.close);
+                    
+                    scope.close = function (e) {
+                        if (scope.showClose) {
+                            ctrl.close();
                             e.stopPropagation();
                             e.preventDefault();
-                        });
-                        element.children().children().on('touch click', function (e) {
-                            e.stopPropagation();
-                        });
-                    }
+                        }
+                    };
+
+                    // Detach the element from the DOM
                     element.detach();
 
                     // On destroy, unregister the popup
