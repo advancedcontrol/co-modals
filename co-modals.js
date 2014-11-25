@@ -44,7 +44,7 @@
                     '<div>' +
                         '<div>' +
                             '<div class="modal-header"><h1>{{title}}</h1>' +
-                                '<span ng-if="showClose" class="close" ng-click="close"></span>' +
+                                '<span ng-if="showClose" class="close" ng-touch="close()"></span>' +
                             '</div>' +
                             '<div class="modal-content" ng-transclude></div>' +
                         '</div>' +
@@ -65,7 +65,7 @@
                         return $animate.addClass(element, 'coModal');
                     };
 
-                    ctrl.close = function () {
+                    scope.close = ctrl.close = function () {
                         return $animate.removeClass(element, 'coModal').then(function () {
                             element.detach();
                         });
